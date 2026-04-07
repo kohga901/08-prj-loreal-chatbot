@@ -1,4 +1,8 @@
-// Copy this code into your Cloudflare Worker script
+// ============================================================
+//  L'Oréal Beauty Advisor – Cloudflare Worker
+//  Deploy this script in the Cloudflare Workers dashboard.
+//  Set a secret named OPENAI_API_KEY in Variables and Secrets.
+// ============================================================
 
 export default {
   async fetch(request, env) {
@@ -9,19 +13,20 @@ export default {
       'Content-Type': 'application/json'
     };
 
-    // Handle CORS preflight requests
+    // Handle CORS preflight
     if (request.method === 'OPTIONS') {
       return new Response(null, { headers: corsHeaders });
     }
 
-    const apiKey = env.OPENAI_API_KEY; // Make sure to name your secret OPENAI_API_KEY in the Cloudflare Workers dashboard
+    const apiKey = env.OPENAI_API_KEY;
     const apiUrl = 'https://api.openai.com/v1/chat/completions';
+
     const userInput = await request.json();
 
     const requestBody = {
       model: 'gpt-4o',
       messages: userInput.messages,
-      max_completion_tokens: 300,
+      max_tokens: 400,
     };
 
     const response = await fetch(apiUrl, {

@@ -3,31 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat Assistant</title>
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap"
-      rel="stylesheet"
-    />
+    <title>L'Oréal Beauty Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
-  // comment
-
   <body>
     <div class="page-wrapper">
-      <!------- Header / Branding ------->
+
+      <!-- Header -->
       <header class="site-header">
-        <h1 class="site-title">Smart Product Advisor</h1>
+        <div class="logo-area">
+          <!-- L'Oréal wordmark (SVG inline, no external image needed) -->
+          <svg class="loreal-logo" viewBox="0 0 260 60" xmlns="http://www.w3.org/2000/svg" aria-label="L'Oréal Paris">
+            <text x="10" y="46" font-family="'Playfair Display', serif" font-size="48" font-weight="700" fill="currentColor" letter-spacing="-1">L'ORÉAL</text>
+          </svg>
+          <span class="logo-sub">PARIS</span>
+        </div>
+        <p class="header-tagline">Because You're Worth It</p>
       </header>
 
-      <!------- Chat Area ------->
+      <!-- Chat Area -->
       <main>
         <section class="chatbox">
+          <!-- Current question banner — resets with each new question -->
+          <div id="currentQuestion" class="current-question" aria-live="polite" hidden>
+            <span class="cq-label">You asked:</span>
+            <span id="currentQuestionText"></span>
+          </div>
+
           <div id="chatWindow" class="chat-window">
-            <!-- messages will be appended here via JS -->
+            <div class="msg ai intro-msg">
+              <div class="bubble">
+                <span class="ai-label">Beauty Advisor</span>
+                ✨ Bonjour! I'm your personal L'Oréal Beauty Advisor. Ask me about skincare routines, makeup recommendations, haircare tips, or any L'Oréal products. How can I help you today?
+              </div>
+            </div>
           </div>
 
           <form id="chatForm" class="chat-form">
@@ -36,23 +46,24 @@
               id="userInput"
               name="userInput"
               type="text"
-              placeholder="Ask me about products or routines…"
+              placeholder="Ask about skincare, makeup, haircare…"
               autocomplete="off"
               required
             />
-            <button type="submit" id="sendBtn">
-              <span class="material-icons">send</span>
-              <span class="visually-hidden">Send</span>
+            <button type="submit" id="sendBtn" aria-label="Send message">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
             </button>
           </form>
         </section>
       </main>
 
-      <!------- Footer Links ------->
+      <!-- Footer -->
       <footer class="site-footer">
-        <p>&copy; 2025 Company Name. All rights reserved.</p>
+        <p>&copy; 2025 L'Oréal Paris. All rights reserved.</p>
         <nav>
-          <!-- These URLs are placeholders -->
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Use</a>
           <a href="#">Contact</a>
@@ -60,7 +71,6 @@
       </footer>
     </div>
 
-    <!-- secrets.js can be removed when using Cloudflare Workers for API requests -->
     <script src="secrets.js"></script>
     <script src="script.js"></script>
   </body>
